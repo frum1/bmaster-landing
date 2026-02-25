@@ -1,11 +1,151 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const githubUrl = 'https://github.com/wumtdev/bmaster';
+
+const benefits = [
+  {
+    title: 'Запуск на доступном оборудовании',
+    text: 'Просто разворачивается в локальной сети школы. Не требует дорогостоящих лицензий и специализированных серверов.',
+  },
+  {
+    title: 'Управление из браузера',
+    text: 'Редактируйте расписание и управляйте звонками удалённо без физического доступа к оборудованию.',
+  },
+  {
+    title: 'Единая панель для всех сценариев',
+    text: 'Все сценарии дня — звонки, изменения расписания и объявления — доступны в одной панели без переключения между разрозненными системами.',
+  },
+  {
+    title: 'Открытый код и развитие',
+    text: 'Проект распространяется по лицензии MIT. Код открыт для аудита, доработки и адаптации под процессы конкретной школы.',
+  },
+];
+
+const gallery = [
+  {
+    src: '/screenshots/dashboard-main.png',
+    alt: 'Главная страница BMaster со списком звонков на сегодня',
+    caption: 'Главная страница: звонки на сегодня',
+  },
+  // Добавь сюда другие скриншоты по мере готовности:
+  // { src: '/screenshots/schedule.png', alt: 'Расписание BMaster', caption: 'Раздел расписаний' },
+  // { src: '/screenshots/announcements.png', alt: 'Трансляция объявлений', caption: 'Объявления' },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="BMaster — современный лендинг системы школьных звонков"
+  description="BMaster — открытая система управления школьными звонками и объявлениями: веб-интерфейс, гибкое расписание и удалённый доступ."
+>
+  <main class="landing">
+    <div class="bg-shape bg-shape--one" aria-hidden="true"></div>
+    <div class="bg-shape bg-shape--two" aria-hidden="true"></div>
+
+    <section class="hero reveal" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <p class="hero__kicker">Система управления школьными звонками и объявлениями</p>
+        <h1 id="hero-title">BMaster — открытая система управления школьными звонками и объявлениями</h1>
+        <p class="hero__lead">
+          BMaster — это веб-ориентированная система для управления школьными звонками и аудио-объявлениями. 
+          Приложение разворачивается на доступном оборудовании (например, Raspberry Pi) и позволяет 
+          администрации школы управлять расписанием через современный браузер.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#gallery">Смотреть интерфейс</a>
+          <a class="btn btn--ghost" href={githubUrl} target="_blank" rel="noopener noreferrer">
+            Открыть GitHub
+          </a>
+        </div>
+      </div>
+      <figure class="hero__media">
+        <img
+          src="/screenshots/dashboard-main.png"
+          alt="Скриншот главной панели BMaster с расписанием звонков"
+          loading="eager"
+          decoding="async"
+        />
+      </figure>
+    </section>
+
+    <section class="section reveal" id="benefits" aria-labelledby="benefits-title">
+      <div class="section__head">
+        <h2 id="benefits-title" class="section__title">Преимущества</h2>
+        <p>
+          Чем BMaster лучше типовых решений
+        </p>
+      </div>
+
+      <div class="benefits-grid">
+        {benefits.map((feature) => (
+          <article class="benefit-card">
+            <h3>{feature.title}</h3>
+            <p>{feature.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section reveal" id="problem-solution" aria-labelledby="problem-solution-title">
+      <div class="section__head">
+        <h2 id="problem-solution-title" class="section__title">Проблема и решение</h2>
+        <p>
+          Почему традиционные системы больше не подходят
+        </p>
+      </div>
+
+      <div class="split-grid">
+        <article class="info-card">
+          <h3>Проблема</h3>
+          <ul class="simple-list">
+            <li>Использование устаревших аппаратных таймеров и закрытых решений.</li>
+            <li>Высокая стоимость коммерческих систем.</li>
+            <li>Сложность внесения изменений в расписание.</li>
+            <li>Отсутствие гибкости для нестандартных учебных сценариев.</li>
+          </ul>
+        </article>
+
+        <article class="info-card info-card--highlight">
+          <h3>Решение</h3>
+          <ul class="simple-list">
+            <li>Централизованное управление через веб-интерфейс.</li>
+            <li>Быстрое редактирование расписания без остановки системы.</li>
+            <li>Поддержка аудио-объявлений в реальном времени.</li>
+            <li>Гибкая архитектура, готовая к масштабированию.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="gallery" aria-labelledby="gallery-title">
+      <div class="section__head">
+        <h2 id="gallery-title" class="section__title">Галерея интерфейса</h2>
+        <p>Текущий экран панели управления.</p>
+      </div>
+
+      <div class="gallery-grid">
+        {gallery.map((shot) => (
+          <a class="gallery-item" href={shot.src} target="_blank" rel="noopener noreferrer">
+            <img src={shot.src} alt={shot.alt} loading="lazy" decoding="async" />
+            <span class="gallery-item__caption">{shot.caption} — открыть в полном размере</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section cta reveal" id="cta" aria-labelledby="cta-title">
+      <div>
+        <h2 id="cta-title">BMaster открыт для внедрения и доработки</h2>
+        <p>
+          BMaster — это бесплатная и открытая альтернатива коммерческим решениям.
+          Разверните систему в своей школе и адаптируйте её под собственные нужды.
+        </p>
+      </div>
+      <div class="cta__actions">
+        <a class="btn btn--primary" href={githubUrl} target="_blank" rel="noopener noreferrer">
+          Перейти к исходному коду
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
