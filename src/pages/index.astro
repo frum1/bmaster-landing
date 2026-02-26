@@ -1,68 +1,69 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { LightGallery } from "astro-lightgallery";
 
-const githubUrl = 'https://github.com/wumtdev/bmaster';
+const githubUrl = "https://github.com/wumtdev/bmaster";
 
 const benefits = [
   {
-    title: 'Запуск на доступном оборудовании',
-    text: 'Просто разворачивается в локальной сети школы. Не требует дорогостоящих лицензий и специализированных серверов.',
+    title: "Запуск на доступном оборудовании",
+    text: "Просто разворачивается в локальной сети школы. Не требует дорогостоящих лицензий и специализированных серверов.",
   },
   {
-    title: 'Управление из браузера',
-    text: 'Редактируйте расписание и управляйте звонками удалённо без физического доступа к оборудованию.',
+    title: "Управление из браузера",
+    text: "Редактируйте расписание и управляйте звонками удалённо без физического доступа к оборудованию.",
   },
   {
-    title: 'Единая панель для всех сценариев',
-    text: 'Все сценарии дня — звонки, изменения расписания и объявления — доступны в одной панели без переключения между разрозненными системами.',
+    title: "Единая панель для всех сценариев",
+    text: "Все сценарии дня — звонки, изменения расписания и объявления — доступны в одной панели без переключения между разрозненными системами.",
   },
   {
-    title: 'Открытый код и развитие',
-    text: 'Проект распространяется по лицензии MIT. Код открыт для аудита, доработки и адаптации под процессы конкретной школы.',
+    title: "Открытый код и развитие",
+    text: "Проект распространяется по лицензии MIT. Код открыт для аудита, доработки и адаптации под процессы конкретной школы.",
   },
 ];
 
 const gallery = [
   {
-    src: '/screenshots/main.png',
-    alt: 'Главная страница BMaster со списком звонков на сегодня',
-    caption: 'Главная страница: звонки на сегодня',
+    src: "/screenshots/main.png",
+    alt: "Главная страница BMaster со списком звонков на сегодня",
+    caption: "Главная страница: звонки на сегодня",
   },
   {
-    src: '/screenshots/schedules.png',
-    alt: 'Страница управления расписаниями с возможностью редактирования и создания шаблонов',
-    caption: 'Управление расписаниями и шаблонами звонков',
+    src: "/screenshots/schedules.png",
+    alt: "Страница управления расписаниями с возможностью редактирования и создания шаблонов",
+    caption: "Управление расписаниями и шаблонами звонков",
   },
   {
-    src: '/screenshots/calendar.png',
-    alt: 'Календарный вид с отображением назначенных звонков по датам',
-    caption: 'Календарь с возможностью назначения расписаний',
+    src: "/screenshots/calendar.png",
+    alt: "Календарный вид с отображением назначенных звонков по датам",
+    caption: "Календарь с возможностью назначения расписаний",
   },
   {
-    src: '/screenshots/announcements.png',
-    alt: 'Интерфейс для создания и отправки объявлений в реальном времени',
-    caption: 'Объявления в реальном времени',
+    src: "/screenshots/announcements.png",
+    alt: "Интерфейс для создания и отправки объявлений в реальном времени",
+    caption: "Объявления в реальном времени",
   },
   {
-    src: '/screenshots/sounds.png',
-    alt: 'Раздел управления аудиофайлами и библиотекой звуков',
-    caption: 'Библиотека аудиофайлов',
+    src: "/screenshots/sounds.png",
+    alt: "Раздел управления аудиофайлами и библиотекой звуков",
+    caption: "Библиотека аудиофайлов",
   },
   {
-    src: '/screenshots/settings.png',
-    alt: 'Страница настроек системы с параметрами сервера и сети',
-    caption: 'Настройки системы и конфигурация',
+    src: "/screenshots/settings.png",
+    alt: "Страница настроек системы с параметрами сервера и сети",
+    caption: "Настройки системы и конфигурация",
   },
   {
-    src: '/screenshots/users.png',
-    alt: 'Раздел управления пользователями и ролями с разграничением прав доступа',
-    caption: 'Пользователи, роли и права доступа',
-  }
+    src: "/screenshots/users.png",
+    alt: "Раздел управления пользователями и ролями с разграничением прав доступа",
+    caption: "Пользователи, роли и права доступа",
+  },
 ];
 ---
 
 <BaseLayout
-  title="BMaster — современный лендинг системы школьных звонков"
+  title="BMaster — современная система школьных звонков"
   description="BMaster — открытая система управления школьными звонками и объявлениями: веб-интерфейс, гибкое расписание и удалённый доступ."
 >
   <main class="landing">
@@ -71,16 +72,27 @@ const gallery = [
 
     <section class="hero reveal" aria-labelledby="hero-title">
       <div class="hero__inner">
-        <p class="hero__kicker">Система управления школьными звонками и объявлениями</p>
-        <h1 id="hero-title">BMaster — открытая система управления школьными звонками и объявлениями</h1>
+        <p class="hero__kicker">
+          Система управления школьными звонками и объявлениями
+        </p>
+        <h1 id="hero-title">
+          BMaster — открытая система управления школьными звонками и
+          объявлениями
+        </h1>
         <p class="hero__lead">
-          BMaster — это веб-ориентированная система для управления школьными звонками и аудио-объявлениями. 
-          Приложение разворачивается на доступном оборудовании (например, Raspberry Pi) и позволяет 
-          администрации школы управлять расписанием через современный браузер.
+          BMaster — это веб-ориентированная система для управления школьными
+          звонками и аудио-объявлениями. Приложение разворачивается на доступном
+          оборудовании (например, Raspberry Pi) и позволяет администрации школы
+          управлять расписанием через современный браузер.
         </p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#gallery">Смотреть интерфейс</a>
-          <a class="btn btn--ghost" href={githubUrl} target="_blank" rel="noopener noreferrer">
+          <a
+            class="btn btn--ghost"
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Открыть GitHub
           </a>
         </div>
@@ -95,37 +107,47 @@ const gallery = [
       </figure>
     </section>
 
-    <section class="section reveal" id="benefits" aria-labelledby="benefits-title">
+    <section
+      class="section reveal"
+      id="benefits"
+      aria-labelledby="benefits-title"
+    >
       <div class="section__head">
         <h2 id="benefits-title" class="section__title">Преимущества</h2>
-        <p>
-          Чем BMaster лучше типовых решений
-        </p>
+        <p>Чем BMaster лучше типовых решений</p>
       </div>
 
       <div class="benefits-grid">
-        {benefits.map((feature) => (
-          <article class="benefit-card">
-            <h3>{feature.title}</h3>
-            <p>{feature.text}</p>
-          </article>
-        ))}
+        {
+          benefits.map((feature) => (
+            <article class="benefit-card">
+              <h3>{feature.title}</h3>
+              <p>{feature.text}</p>
+            </article>
+          ))
+        }
       </div>
     </section>
 
-    <section class="section reveal" id="problem-solution" aria-labelledby="problem-solution-title">
+    <section
+      class="section reveal"
+      id="problem-solution"
+      aria-labelledby="problem-solution-title"
+    >
       <div class="section__head">
-        <h2 id="problem-solution-title" class="section__title">Проблема и решение</h2>
-        <p>
-          Почему традиционные системы больше не подходят
-        </p>
+        <h2 id="problem-solution-title" class="section__title">
+          Проблема и решение
+        </h2>
+        <p>Почему традиционные системы больше не подходят</p>
       </div>
 
       <div class="split-grid">
         <article class="info-card">
           <h3>Проблема</h3>
           <ul class="simple-list">
-            <li>Использование устаревших аппаратных таймеров и закрытых решений.</li>
+            <li>
+              Использование устаревших аппаратных таймеров и закрытых решений.
+            </li>
             <li>Высокая стоимость коммерческих систем.</li>
             <li>Сложность внесения изменений в расписание.</li>
             <li>Отсутствие гибкости для нестандартных учебных сценариев.</li>
@@ -144,32 +166,46 @@ const gallery = [
       </div>
     </section>
 
-    <section class="section reveal" id="gallery" aria-labelledby="gallery-title">
+    <section
+      class="section reveal"
+      id="gallery"
+      aria-labelledby="gallery-title"
+    >
       <div class="section__head">
         <h2 id="gallery-title" class="section__title">Галерея интерфейса</h2>
         <p>Текущий экран панели управления.</p>
       </div>
 
-      <div class="gallery-grid">
-        {gallery.map((shot) => (
-          <a class="gallery-item" href={shot.src} target="_blank" rel="noopener noreferrer">
-            <img src={shot.src} alt={shot.alt} loading="lazy" decoding="async" />
-            <span class="gallery-item__caption">{shot.caption}</span>
-          </a>
-        ))}
-      </div>
+      <LightGallery
+        layout={{
+          imgs: gallery,
+          classContainer: "gallery-grid",
+          classItem: "gallery-item",
+        }}
+        options={{
+          thumbnail: true,
+          zoom: true,
+        }}
+        addPlugins={["fullscreen", "zoom"]}
+      />
     </section>
 
     <section class="section cta reveal" id="cta" aria-labelledby="cta-title">
       <div>
         <h2 id="cta-title">BMaster открыт для внедрения и доработки</h2>
         <p>
-          BMaster — это бесплатная и открытая альтернатива коммерческим решениям.
-          Разверните систему в своей школе и адаптируйте её под собственные нужды.
+          BMaster — это бесплатная и открытая альтернатива коммерческим
+          решениям. Разверните систему в своей школе и адаптируйте её под
+          собственные нужды.
         </p>
       </div>
       <div class="cta__actions">
-        <a class="btn btn--primary" href={githubUrl} target="_blank" rel="noopener noreferrer">
+        <a
+          class="btn btn--primary"
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Перейти к исходному коду
         </a>
       </div>

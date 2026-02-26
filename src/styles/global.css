@@ -340,14 +340,16 @@ a {
   margin-top: 6px;
 }
 
-.gallery-grid {
+.astro-lightgallery-adaptive-container.gallery-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
-.gallery-item {
+.astro-lightgallery-adaptive-item.gallery-item {
   display: grid;
+  height: auto !important;
+  flex: none;
   gap: 0;
   padding: 0;
   overflow: hidden;
@@ -357,6 +359,10 @@ a {
   transition:
     transform 180ms ease,
     box-shadow 180ms ease;
+}
+
+.gallery-item:last-child {
+  flex-grow: 0;
 }
 
 .gallery-item:hover {
@@ -369,10 +375,13 @@ a {
   outline-offset: 3px;
 }
 
-.gallery-item img {
+.astro-lightgallery-adaptive-item.gallery-item img {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
+  height: auto;
+  min-width: 0;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: contain;
   object-position: top center;
   border: none;
   border-radius: 0;
@@ -477,8 +486,11 @@ a {
   }
 
   .benefits-grid,
-  .split-grid,
-  .gallery-grid {
+  .split-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .astro-lightgallery-adaptive-container.gallery-grid {
     grid-template-columns: 1fr;
   }
 
