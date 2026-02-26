@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { LightGallery } from "astro-lightgallery";
+import InlineIcon from "../components/InlineIcon.astro";
 
 const githubUrl = "https://github.com/BellMaster-ru/bmaster";
 const demoUrl = "https://demo.bellmaster.ru";
@@ -36,18 +37,45 @@ const benefits = [
   {
     title: "Запуск на доступном оборудовании",
     text: "Просто разворачивается в локальной сети школы. Не требует дорогостоящих лицензий и специализированных серверов.",
+    icon: "server",
   },
   {
     title: "Управление из браузера",
     text: "Редактируйте расписание и управляйте звонками удалённо без физического доступа к оборудованию.",
+    icon: "browser",
   },
   {
     title: "Единая панель для всех сценариев",
     text: "Все сценарии дня — звонки, изменения расписания и объявления — доступны в одной панели без переключения между разрозненными системами.",
+    icon: "layers",
   },
   {
     title: "Открытый код и развитие",
     text: "Проект распространяется по лицензии MIT. Код открыт для аудита, доработки и адаптации под процессы конкретной школы.",
+    icon: "codeBranch",
+  },
+];
+
+const techBenefits = [
+  {
+    title: "Аудиодвижок wauxio",
+    text: "Проект использует аудиодвижок выращенный «на своей грядке». wauxio позволяет низкоуровнево управлять звуком, в том числе аудио-стримами.",
+    icon: "audioLibrary",
+  },
+  {
+    title: "Очередь событий с приоритетами",
+    text: "Система управляет звонками через очередь с поддержкой приоритетов и строгого порядка выполнения. Состояние хранится в базе данных и восстанавливается при перезапуске.",
+    icon: "clockQueue",
+  },
+  {
+    title: "Низкобитрейтный Opus-стрим",
+    text: "Потоковое вещание кодируется в Opus и стабильно работает в локальной сети даже при ограниченной пропускной способности. Нагрузка на сеть остаётся низкой без заметной потери качества..",
+    icon: "stream",
+  },
+  {
+    title: "Простая ролевая модель",
+    text: "Доступ к панели защищён JWT-аутентификацией и ролевой моделью. Администратор может точечно выдавать права и ограничивать доступ к операциям.",
+    icon: "shield",
   },
 ];
 
@@ -95,10 +123,11 @@ const gallery = [
   description="BMaster — открытая система управления школьными звонками и объявлениями: веб-интерфейс, гибкое расписание и удалённый доступ."
 >
   <main class="landing">
-    <div class="bg-shape bg-shape--one" aria-hidden="true"></div>
-    <div class="bg-shape bg-shape--two" aria-hidden="true"></div>
-
-    <section class="hero reveal" aria-labelledby="hero-title">
+    <section
+      class="hero reveal reveal-stagger"
+      aria-labelledby="hero-title"
+      style="--reveal-delay: 20ms;"
+    >
       <div class="hero__inner">
         <p class="hero__kicker">
           Система управления школьными звонками и объявлениями
@@ -144,9 +173,10 @@ const gallery = [
     </section>
 
     <section
-      class="section quickstart reveal"
+      class="section quickstart reveal reveal-stagger"
       id="quickstart"
       aria-labelledby="quickstart-title"
+      style="--reveal-delay: 80ms;"
     >
       <div class="section__head">
         <h2 id="quickstart-title" class="section__title">Быстрый старт</h2>
@@ -204,9 +234,10 @@ const gallery = [
     </section>
 
     <section
-      class="section reveal"
+      class="section reveal reveal-stagger"
       id="benefits"
       aria-labelledby="benefits-title"
+      style="--reveal-delay: 140ms;"
     >
       <div class="section__head">
         <h2 id="benefits-title" class="section__title">Преимущества</h2>
@@ -217,7 +248,12 @@ const gallery = [
         {
           benefits.map((feature) => (
             <article class="benefit-card">
-              <h3>{feature.title}</h3>
+              <div class="benefit-card__head">
+                <span class="icon-badge benefit-card__icon" aria-hidden="true">
+                  <InlineIcon name={feature.icon} />
+                </span>
+                <h3>{feature.title}</h3>
+              </div>
               <p>{feature.text}</p>
             </article>
           ))
@@ -226,9 +262,40 @@ const gallery = [
     </section>
 
     <section
-      class="section reveal"
+      class="section section--tech reveal reveal-stagger"
+      id="tech-benefits"
+      aria-labelledby="tech-benefits-title"
+      style="--reveal-delay: 200ms;"
+    >
+      <div class="section__head">
+        <h2 id="tech-benefits-title" class="section__title">
+          Технические преимущества
+        </h2>
+        <p>Инженерные решения, которые обеспечивают предсказуемую работу.</p>
+      </div>
+
+      <div class="benefits-grid">
+        {
+          techBenefits.map((feature) => (
+            <article class="benefit-card">
+              <div class="benefit-card__head">
+                <span class="icon-badge benefit-card__icon" aria-hidden="true">
+                  <InlineIcon name={feature.icon} />
+                </span>
+                <h3>{feature.title}</h3>
+              </div>
+              <p>{feature.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section
+      class="section reveal reveal-stagger"
       id="problem-solution"
       aria-labelledby="problem-solution-title"
+      style="--reveal-delay: 240ms;"
     >
       <div class="section__head">
         <h2 id="problem-solution-title" class="section__title">
@@ -239,7 +306,12 @@ const gallery = [
 
       <div class="split-grid">
         <article class="info-card">
-          <h3>Проблема</h3>
+          <div class="info-card__head">
+            <span class="icon-badge info-card__icon" aria-hidden="true">
+              <InlineIcon name="problem" />
+            </span>
+            <h3>Проблема</h3>
+          </div>
           <ul class="simple-list">
             <li>
               Использование устаревших аппаратных таймеров и закрытых решений.
@@ -251,7 +323,12 @@ const gallery = [
         </article>
 
         <article class="info-card info-card--highlight">
-          <h3>Решение</h3>
+          <div class="info-card__head">
+            <span class="icon-badge info-card__icon" aria-hidden="true">
+              <InlineIcon name="solution" />
+            </span>
+            <h3>Решение</h3>
+          </div>
           <ul class="simple-list">
             <li>Централизованное управление через веб-интерфейс.</li>
             <li>Быстрое редактирование расписания без остановки системы.</li>
@@ -263,9 +340,10 @@ const gallery = [
     </section>
 
     <section
-      class="section reveal"
+      class="section reveal reveal-stagger"
       id="gallery"
       aria-labelledby="gallery-title"
+      style="--reveal-delay: 300ms;"
     >
       <div class="section__head">
         <h2 id="gallery-title" class="section__title">Галерея интерфейса</h2>
@@ -286,7 +364,12 @@ const gallery = [
       />
     </section>
 
-    <section class="section cta reveal" id="cta" aria-labelledby="cta-title">
+    <section
+      class="section cta reveal reveal-stagger"
+      id="cta"
+      aria-labelledby="cta-title"
+      style="--reveal-delay: 340ms;"
+    >
       <div>
         <h2 id="cta-title">BMaster открыт для внедрения и доработки</h2>
         <p>

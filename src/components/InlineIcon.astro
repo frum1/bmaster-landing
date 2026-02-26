@@ -1,0 +1,159 @@
+---
+type IconName =
+  | "server"
+  | "browser"
+  | "layers"
+  | "codeBranch"
+  | "clockQueue"
+  | "audioLibrary"
+  | "stream"
+  | "shield"
+  | "problem"
+  | "solution";
+
+interface Props {
+  name: IconName;
+  size?: number;
+  title?: string;
+  decorative?: boolean;
+  class?: string;
+}
+
+const {
+  name,
+  size = 24,
+  title,
+  decorative = true,
+  class: className = "",
+} = Astro.props;
+
+const accessibleLabel = decorative ? undefined : (title ?? name);
+---
+
+<svg
+  class:list={["inline-icon", className]}
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.8"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  role={decorative ? undefined : "img"}
+  aria-hidden={decorative ? "true" : undefined}
+  aria-label={accessibleLabel}
+>
+  {title && !decorative && <title>{title}</title>}
+
+  {
+    name === "server" && (
+      <>
+        <rect x="3.5" y="4" width="17" height="6" rx="1.8" />
+        <rect x="3.5" y="14" width="17" height="6" rx="1.8" />
+        <path d="M7 7h.01" />
+        <path d="M7 17h.01" />
+        <path d="M11 7h6" />
+        <path d="M11 17h6" />
+      </>
+    )
+  }
+
+  {
+    name === "browser" && (
+      <>
+        <rect x="3.5" y="4" width="17" height="16" rx="2.2" />
+        <path d="M3.5 8.2h17" />
+        <path d="M7 6.2h.01" />
+        <path d="M10 6.2h.01" />
+        <path d="M13 6.2h.01" />
+        <path d="M8.5 13.2h7" />
+        <path d="M8.5 16.2h4.5" />
+      </>
+    )
+  }
+
+  {
+    name === "layers" && (
+      <>
+        <path d="M12 3.8 20 8l-8 4.2L4 8 12 3.8Z" />
+        <path d="m4 12 8 4.2 8-4.2" />
+        <path d="m4 16 8 4.2 8-4.2" />
+      </>
+    )
+  }
+
+  {
+    name === "codeBranch" && (
+      <>
+        <path d="M8 4.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z" />
+        <path d="M16 14.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z" />
+        <path d="M16 4.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z" />
+        <path d="M10.5 7h3" />
+        <path d="M8 9.5v5a3 3 0 0 0 3 3h2.5" />
+      </>
+    )
+  }
+
+  {
+    name === "clockQueue" && (
+      <>
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M12 7.8v4.4l2.8 1.9" />
+        <path d="M5.2 12H3.8" />
+        <path d="M20.2 12h-1.4" />
+      </>
+    )
+  }
+
+  {
+    name === "audioLibrary" && (
+      <>
+        <path d="M4.5 9.5h3.2l4.3-3.3v11.6l-4.3-3.3H4.5z" />
+        <path d="M15 9a4 4 0 0 1 0 6" />
+        <path d="M17 7a7 7 0 0 1 0 10" />
+      </>
+    )
+  }
+
+  {
+    name === "stream" && (
+      <>
+        <path d="M5.5 10.5v3" />
+        <path d="M8.5 7.5v9" />
+        <path d="M12 5.5v13" />
+        <path d="M15.5 7.5v9" />
+        <path d="M18.5 10.5v3" />
+      </>
+    )
+  }
+
+  {
+    name === "shield" && (
+      <>
+        <path d="M12 3.5 19 6v5.2c0 4.3-2.9 7.9-7 9.3-4.1-1.4-7-5-7-9.3V6L12 3.5Z" />
+        <path d="m9.3 12.2 1.9 1.9 3.6-3.8" />
+      </>
+    )
+  }
+
+  {
+    name === "problem" && (
+      <>
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M12 8v5" />
+        <path d="M12 16.3h.01" />
+      </>
+    )
+  }
+
+  {
+    name === "solution" && (
+      <>
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="m8.3 12.4 2.4 2.4 5-5" />
+      </>
+    )
+  }
+</svg>
