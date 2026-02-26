@@ -2,7 +2,35 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { LightGallery } from "astro-lightgallery";
 
-const githubUrl = "https://github.com/wumtdev/bmaster";
+const githubUrl = "https://github.com/BellMaster-ru/bmaster";
+const demoUrl = "https://demo.bellmaster.ru";
+
+const quickstartRequirements = [
+  "Linux (Debian/Ubuntu-подобный дистрибутив) с systemd и apt-get",
+  "Python 3.13+, pip и git",
+  "ffmpeg для аудио-объявлений и кодека Opus",
+  "Доступ в интернет для загрузки frontend-билда при установке",
+];
+
+const quickstartSteps = [
+  {
+    title: "Клонирование",
+    text: "Скачайте репозиторий и перейдите в каталог проекта.",
+    command: `git clone https://github.com/bellmaster-ru/bmaster.git
+cd bmaster`,
+  },
+  {
+    title: "Установка",
+    text: "Запустите установочный скрипт, который подготовит сервис и окружение.",
+    command: `chmod +x setup.sh
+./setup.sh`,
+  },
+  {
+    title: "Запуск",
+    text: "Перезагрузите машину и сервис поднимется на https://<ваш IP>:8000",
+    command: `sudo systemctl reboot`,
+  },
+];
 
 const benefits = [
   {
@@ -86,7 +114,15 @@ const gallery = [
           управлять расписанием через современный браузер.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#gallery">Смотреть интерфейс</a>
+          <a
+            class="btn btn--primary"
+            href={demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Открыть демо
+          </a>
+          <a class="btn btn--ghost" href="#gallery">Смотреть интерфейс</a>
           <a
             class="btn btn--ghost"
             href={githubUrl}
@@ -105,6 +141,66 @@ const gallery = [
           decoding="async"
         />
       </figure>
+    </section>
+
+    <section
+      class="section quickstart reveal"
+      id="quickstart"
+      aria-labelledby="quickstart-title"
+    >
+      <div class="section__head">
+        <h2 id="quickstart-title" class="section__title">Быстрый старт</h2>
+        <p>Минимальный запуск на Debian/Ubuntu-подобной системе с systemd.</p>
+      </div>
+
+      <ul class="quickstart__requirements">
+        {
+          quickstartRequirements.map((item) => (
+            <li class="quickstart__requirement">{item}</li>
+          ))
+        }
+      </ul>
+
+      <div class="quickstart__steps">
+        {
+          quickstartSteps.map((step, index) => (
+            <article class="quickstart-step">
+              <p class="quickstart-step__index">Шаг {index + 1}</p>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+              <pre>
+                <code>{step.command}</code>
+              </pre>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="quickstart__note">
+        После первого запуска смените стандартный пароль от сервисного доступа <code
+          >auth.service.password</code
+        > в
+        <code>data/config.yml</code>.
+      </p>
+
+      <div class="quickstart__actions">
+        <a
+          class="btn btn--primary"
+          href={demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Открыть демо
+        </a>
+        <a
+          class="btn btn--ghost"
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Полный README / GitHub
+        </a>
+      </div>
     </section>
 
     <section
